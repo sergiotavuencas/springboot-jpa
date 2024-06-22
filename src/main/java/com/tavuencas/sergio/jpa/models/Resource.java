@@ -2,12 +2,15 @@ package com.tavuencas.sergio.jpa.models;
 
 import jakarta.persistence.*;
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
+@SuperBuilder
 @Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "resource_type")
 public class Resource {
 
     @Id

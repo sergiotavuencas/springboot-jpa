@@ -10,15 +10,8 @@ import lombok.experimental.SuperBuilder;
 @AllArgsConstructor
 @SuperBuilder
 @Entity
-public class Lecture extends BaseEntity {
+@DiscriminatorValue("T")
+public class Text extends Resource {
 
-    private String name;
-
-    @ManyToOne
-    @JoinColumn(name = "section_id")
-    private Section section;
-
-    @OneToOne
-    @JoinColumn(name = "resource_id")
-    private Resource resource;
+    private String content;
 }

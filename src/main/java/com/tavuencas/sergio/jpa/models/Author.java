@@ -2,19 +2,17 @@ package com.tavuencas.sergio.jpa.models;
 
 import jakarta.persistence.*;
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 import java.util.List;
 
+@EqualsAndHashCode(callSuper = true)
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
+@SuperBuilder
 @Entity
-public class Author {
-
-    @Id
-    @GeneratedValue
-    private Integer id;
+public class Author extends BaseEntity {
 
     private String firstName;
 
