@@ -8,7 +8,7 @@ import lombok.*;
 @AllArgsConstructor
 @Builder
 @Entity
-public class Resources {
+public class Resource {
 
     @Id
     @GeneratedValue
@@ -19,4 +19,8 @@ public class Resources {
     private int size;
 
     private String url;
+
+    @OneToOne
+    @JoinColumn(name = "lecture_id")
+    private Lecture lecture;
 }
