@@ -15,4 +15,8 @@ public class Lecture {
     private Integer id;
 
     private String name;
+
+    @ManyToOne
+    @JoinColumn(name = "section_id")
+    private Section section;
 }
