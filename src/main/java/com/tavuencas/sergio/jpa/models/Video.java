@@ -10,7 +10,7 @@ import lombok.experimental.SuperBuilder;
 @AllArgsConstructor
 @SuperBuilder
 @Entity
-@DiscriminatorValue("V")
+//@DiscriminatorValue("V")
 public class Video extends Resource {
 
     private int length;
