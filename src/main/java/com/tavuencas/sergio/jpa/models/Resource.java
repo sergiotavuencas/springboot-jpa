@@ -2,17 +2,15 @@ package com.tavuencas.sergio.jpa.models;
 
 import jakarta.persistence.*;
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 
+@EqualsAndHashCode(callSuper = true)
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
+@SuperBuilder
 @Entity
-public class Resource {
-
-    @Id
-    @GeneratedValue
-    private Integer id;
+public class Resource extends BaseEntity {
 
     private String name;
 
