@@ -8,7 +8,7 @@ spring:
   jpa:
     hibernate:
       # Como a aplicacao lidara com os schemas ao ser inicilizada
-      ddl-auto: create-drop
+      ddl-auto: update
     database: postgresql
     show-sql: true
 
