@@ -1,0 +1,14 @@
+# Configuracao da conexao com o banco de dados (PostgreSQL)
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/data_jpa
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      # Como a aplicacao lidara com os schemas ao ser inicilizada
+      ddl-auto: create-drop
+    database: postgresql
+    show-sql: true
+

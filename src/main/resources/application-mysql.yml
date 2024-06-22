@@ -1,0 +1,16 @@
+# Configuração da conexão com o banco de dados (MySQL)
+spring:
+  datasource:
+    # MySQL possuí a funcionalidade de criar um bd caso não exista, como no exemplo abaixo
+    # onde "data_jpa" é o bd, e o que vem a seguir informa que o mesmo deve ser criado
+    # caso não exista.
+    url: jdbc:mysql://localhost:3306/data_jpa?createDatabaseIfNotExist=true
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      # Como a aplicação lidará com os schemas ao ser inicilizada
+      ddl-auto: create-drop
+    database: mysql
+    show-sql: true
