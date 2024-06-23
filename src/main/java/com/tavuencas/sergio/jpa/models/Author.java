@@ -12,6 +12,10 @@ import java.util.List;
 @AllArgsConstructor
 @SuperBuilder
 @Entity
+@NamedQuery(
+        name = "Author.findByFirstName",
+        query = "SELECT a FROM Author a LEFT JOIN FETCH a.courses WHERE a.firstName = :firstName"
+)
 public class Author extends BaseEntity {
 
     private String firstName;
