@@ -5,10 +5,13 @@ import com.tavuencas.sergio.jpa.models.Author;
 import com.tavuencas.sergio.jpa.models.Video;
 import com.tavuencas.sergio.jpa.repositories.AuthorRepository;
 import com.tavuencas.sergio.jpa.repositories.VideoRepository;
+import com.tavuencas.sergio.jpa.specification.AuthorSpecification;
+import jakarta.transaction.Transactional;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.data.jpa.domain.Specification;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -30,22 +33,6 @@ public class JpaApplication {
             AuthorRepository authorRepository
     ) {
         return args -> {
-            authorRepository.updateAuthorEmail("scottie@gmail.com", "Hammes");
-
-            // As JPQL does not allow to use of LOWER() with IN, it is necessary to modify each value inside a List<String> using toLowerCase()
-            List<String> lastNames = Stream.of("Goldner", "Hammes", "Heaney")
-                    .map(String::toLowerCase)
-                    .collect(Collectors.toList());
-
-            List<Author> authorsByLastNameIn = authorRepository.findAllByLastNameInIgnoreCase(lastNames);
-
-            if (!authorsByLastNameIn.isEmpty()) {
-                authorsByLastNameIn.forEach(System.out::println);
-            }
-
-            authorRepository.findByFirstName("Desmond")
-                    .forEach(System.out::println);
-
             // Creating fake authors for testing using Faker
 //            for (int i = 0; i < 50; i++) {
 //                Faker faker = new Faker();
@@ -63,6 +50,28 @@ public class JpaApplication {
 //                        .build();
 //                authorRepository.save(author);
 //            }
+
+//            authorRepository.updateAuthorEmail("scottie@gmail.com", "Hammes");
+
+            // As JPQL does not allow to use of LOWER() with IN, it is necessary to modify each value inside a List<String> using toLowerCase()
+//            List<String> lastNames = Stream.of("Goldner", "Hammes", "Heaney")
+//                    .map(String::toLowerCase)
+//                    .collect(Collectors.toList());
+//
+//            List<Author> authorsByLastNameIn = authorRepository.findAllByLastNameInIgnoreCase(lastNames);
+//
+//            if (!authorsByLastNameIn.isEmpty()) {
+//                authorsByLastNameIn.forEach(System.out::println);
+//            }
+//
+//            authorRepository.findByFirstName("Desmond")
+//                    .forEach(System.out::println);
+
+            Specification<Author> spec = Specification
+                    .where(AuthorSpecification.firstNameContains("esm"))
+                    .and(AuthorSpecification.lastNameContains("teh"));
+
+            authorRepository.findAll(spec).forEach(System.out::println);
         };
     }
 }
